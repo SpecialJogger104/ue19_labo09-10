@@ -22,4 +22,4 @@ jobs:
           DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
         run: |
           docker buildx create --use --name mybuilder
-          docker buildx build --push -t ${{ github.repository_owner }}/vols_belgique:latest .
+          docker buildx build --push -t specialjogger104/vols_belgique:latest .
