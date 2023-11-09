@@ -17,3 +17,4 @@ if response.status_code == 200:
     print(f"Nombre de vols au-dessus de la Belgique : {num_flights}")
 else:
     print(f"Échec de la requête. Code de statut : {response.status_code}")
+print('') 
