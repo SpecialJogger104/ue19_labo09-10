@@ -23,6 +23,6 @@ jobs:
 
       - name: Build and push Docker image
         run: |
-          docker buildx build --platform linux/amd64,linux/arm64 -t ghcr.io/${{ github.repository_owner }}/latest -t ghcr.io/${{ github.repository_owner }}/${{ github.sha }} .
+          docker buildx build --platform linux/amd64,linux/arm64 -t ghcr.io/specialjogger104/latest -t ghcr.io/specialjogger104/739ed51e02c8dac58ba7b88b9147ab188288db11 .
           docker push ghcr.io/${{ github.repository_owner }}/latest
           docker push ghcr.io/${{ github.repository_owner }}/${{ github.repository_name }}/${{ github.sha }}
