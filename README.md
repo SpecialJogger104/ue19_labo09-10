@@ -26,7 +26,6 @@ If you prefer to run the script in a Docker container, follow these steps:
     docker build -t opensky-flight-counter .
     ```
 2. Run the container using the following command:
-
     ```bash
     docker run -e USERNAME='your_username' -e PASSWORD='your_password' opensky-flight-counter
     ```
