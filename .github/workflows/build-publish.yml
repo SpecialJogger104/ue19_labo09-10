@@ -19,7 +19,7 @@ jobs:
     - name: Set up Docker Buildx
       run: |
         mkdir -p $HOME/.docker/cli-plugins
-        Move-Item -Path buildx.exe -Destination $HOME/.docker/cli-plugins/docker-buildx.exe -Force
+        Copy-Item -Path buildx.exe -Destination $HOME/.docker/cli-plugins/docker-buildx.exe -Force
 
     - name: Login to GitHub Packages
       run: echo ${{ secrets.DOCKER_PASSWORD }} | docker login ghcr.io -u ${{ github.actor }} --password-stdin
