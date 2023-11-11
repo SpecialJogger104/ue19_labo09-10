@@ -7,7 +7,7 @@ on:
 
 jobs:
   build:
-    runs-on: windows-latest  # Utilisation de Windows
+    runs-on: windows-latest
 
     steps:
     - name: Checkout repository
@@ -23,6 +23,6 @@ jobs:
       run: |
         docker buildx create --use
         docker buildx inspect --bootstrap
-        docker buildx build --platform windows/amd64,linux/amd64,linux/arm64 -t ghcr.io/${{ github.repository_owner }}/my-image:latest -t ghcr.io/${{ github.repository_owner }}/my-image:${{ github.sha }} .
-        docker push ghcr.io/${{ github.repository_owner }}/my-image:latest
-        docker push ghcr.io/${{ github.repository_owner }}/my-image:${{ github.sha }}
+        docker buildx build --platform windows/amd64,linux/amd64,linux/arm64 -t ghcr.io/"SpecialJogger104"/vols-be:latest -t ghcr.io/"SpecialJogger104"/vols-be:${{ github.sha }} .
+        docker push ghcr.io/"SpecialJogger104"/vols-be:latest
+        docker push ghcr.io/"SpecialJogger104"/vols-be:${{ github.sha }}
