@@ -27,5 +27,6 @@ jobs:
         run: |
           docker buildx create --use
           docker buildx inspect default --bootstrap
-          docker buildx build --platform linux/amd64,linux/arm64 -t docker.pkg.github.com/${{ github.repository }}/ue19_labo09-10:latest .
-          docker push docker.pkg.github.com/${{ github.repository }}/ue19_labo09-10:latest
+          docker buildx build --platform linux/amd64,linux/arm64 -t docker.pkg.github.com/${{ github.repository | lower }}/ue19_labo09-10:latest .
+          docker push docker.pkg.github.com/${{ github.repository | lower }}/ue19_labo09-10:latest
+
