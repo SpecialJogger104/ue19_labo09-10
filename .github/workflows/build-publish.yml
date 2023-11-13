@@ -19,7 +19,7 @@ jobs:
     - name: Build and Push Docker image
       run: |
         docker build -t docker.pkg.github.com/specialjogger104/docker-image:latest .
-        docker push docker.pkg.github.com/specialjogger104/docker-image:latest  # Assurez-vous d'inclure ":latest" ici
+        docker push docker.pkg.github.com/specialjogger104/docker-image:latest
 
     - name: Logout from Docker Hub
       run: docker logout docker.pkg.github.com
