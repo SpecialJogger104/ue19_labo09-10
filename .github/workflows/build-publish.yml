@@ -33,7 +33,7 @@ jobs:
 
     - name: Scan for Vulnerabilities
       run: |
-        docker run --rm -v $(pwd):/app -w /app aquasec/trivy:latest --exit-code 0 --severity HIGH --no-progress docker.pkg.github.com/specialjogger104/docker-image:latest
+        docker run --rm -v $(pwd):/app -w /app aquasec/trivy:latest --severity HIGH --no-progress docker.pkg.github.com/specialjogger104/docker-image:latest
 
     - name: Logout from Docker Hub
       run: docker logout docker.pkg.github.com
