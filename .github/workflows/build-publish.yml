@@ -38,7 +38,7 @@ jobs:
           docker.pkg.github.com/specialjogger104/docker-image:v1.0.0
 
     - name: Scan Docker image for vulnerabilities
-      uses: docker/scan-action@v1
+      uses: docker/scan-action@v0
       with:
         image-ref: docker.pkg.github.com/specialjogger104/docker-image:latest
 
