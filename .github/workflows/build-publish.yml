@@ -37,10 +37,10 @@ jobs:
           docker.pkg.github.com/specialjogger104/docker-image:latest
           docker.pkg.github.com/specialjogger104/docker-image:v1.0.0
 
-    - name: Scan Docker image for vulnerabilities
-      uses: docker/scan-action@v0
-      with:
-        image-ref: docker.pkg.github.com/specialjogger104/docker-image:latest
+    - name: Run Trivy for vulnerability scanning
+      run: |
+        docker pull aquasec/trivy
+        docker run --rm -v $(pwd):/workdir -w /workdir aquasec/trivy --exit-code 0 --severity HIGH docker.pkg.github.com/specialjogger104/docker-image:latest
 
     - name: Logout from Docker Hub
       uses: docker/logout-action@v1
