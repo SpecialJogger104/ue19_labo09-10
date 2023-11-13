@@ -32,4 +32,4 @@ jobs:
         docker buildx build --platform linux/amd64,linux/arm64 -t docker.pkg.github.com/specialjogger104/docker-image:latest .
 
     - name: Logout from Docker Hub
-      uses: docker/logout-action@v1
+      run: docker logout docker.pkg.github.com
