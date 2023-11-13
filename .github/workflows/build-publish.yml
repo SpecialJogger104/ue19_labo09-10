@@ -1,4 +1,4 @@
-name: Build, Publish, and Scan Docker Image
+name: Build and Publish Docker Image
 
 on:
   push:
@@ -6,7 +6,7 @@ on:
       - main
 
 jobs:
-  build-publish-scan:
+  build-and-publish:
     runs-on: ubuntu-latest
 
     steps:
@@ -20,11 +20,6 @@ jobs:
       run: |
         docker build -t docker.pkg.github.com/specialjogger104/docker-image:latest .
         docker push docker.pkg.github.com/specialjogger104/docker-image:latest
-
-    - name: Scan Docker image for vulnerabilities
-      uses: docker/scan-action@v1
-      with:
-        image-ref: docker.pkg.github.com/specialjogger104/docker-image:latest
 
     - name: Logout from Docker Hub
       run: docker logout docker.pkg.github.com
