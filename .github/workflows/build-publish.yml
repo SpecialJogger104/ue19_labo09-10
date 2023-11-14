@@ -33,7 +33,7 @@ jobs:
 
     - name: Scan for Vulnerabilities
       run: |
-        docker run --rm -v /var/run/docker.sock:/var/run/docker.sock aquasec/trivy:latest image docker.pkg.github.com/specialjogger104/docker-image:latest
+        docker run --rm -v /var/run/docker.sock:/var/run/docker.sock aquasec/trivy:latest image docker-image:latest
 
     - name: Logout from Docker Hub
       run: docker logout docker.pkg.github.com
