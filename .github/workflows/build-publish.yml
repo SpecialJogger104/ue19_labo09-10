@@ -36,10 +36,3 @@ jobs:
 
     - name: Logout from Docker Hub
       run: docker logout docker.pkg.github.com
-
-
-    - name: Push Docker Image
-      run: docker buildx build --platform linux/amd64,linux/arm64 -t docker.pkg.github.com/specialjogger104/docker-image:latest --push .
-
-    - name: Logout from Docker Hub
-      run: docker logout docker.pkg.github.com
