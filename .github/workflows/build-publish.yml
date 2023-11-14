@@ -29,11 +29,11 @@ jobs:
       run: |
         docker buildx create --use
         docker buildx inspect default --bootstrap
-        docker buildx build --platform linux/amd64,linux/arm64 -t docker-image-vul:latest .
+        docker buildx build --platform linux/amd64,linux/arm64 -t docker.pkg.github.com/specialjogger104/docker-image:latest .
 
     - name: Scan for Vulnerabilities
       run: |
-        docker run --rm -v //var/run/docker.sock:/var/run/docker.sock aquasec/trivy:latest image docker-image-vul:latest
+        docker run --rm -v //var/run/docker.sock:/var/run/docker.sock aquasec/trivy:latest image docker.io/library/docker-image:latest
 
     - name: Logout from Docker Hub
       run: docker logout docker.pkg.github.com
