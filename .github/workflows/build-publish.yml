@@ -29,12 +29,12 @@ jobs:
       run: |
         docker buildx create --use
         docker buildx inspect default --bootstrap
-        docker buildx build --platform linux/amd64,linux/arm64 -t docker.pkg.github.com/specialjogger104/docker-image:latest .
+        docker buildx build --platform linux/amd64,linux/arm64 -t docker.io/specialjogger104/docker-image:latest .
 
     - name: Run Trivy vulnerability scanner
       uses: aquasecurity/trivy-action@master
       with:
-        image-ref: 'docker.pkg.github.com/specialjogger104/docker-image:latest'
+        image-ref: 'docker.io/specialjogger104/docker-image:latest'
         format: 'sarif'
         output: 'trivy-results.sarif'
 
@@ -45,4 +45,4 @@ jobs:
         sarif_file: 'trivy-results.sarif'
 
     - name: Logout from Docker Hub
-      run: docker logout docker.pkg.github.com
+      run: docker logout docker.io
