@@ -31,9 +31,18 @@ jobs:
         docker buildx inspect default --bootstrap
         docker buildx build --platform linux/amd64,linux/arm64 -t docker.pkg.github.com/specialjogger104/docker-image:latest .
 
-    - name: Scan for Vulnerabilities
-      run: |
-        docker run --rm -v /var/run/docker.sock:/var/run/docker.sock aquasec/trivy:latest image docker.pkg.github.com/***/docker-image:latest
+    - name: Run Trivy vulnerability scanner
+      uses: aquasecurity/trivy-action@master
+      with:
+        image-ref: 'docker.pkg.github.com/specialjogger104/docker-image:latest'
+        format: 'sarif'
+        output: 'trivy-results.sarif'
+
+    - name: Upload Trivy scan results to GitHub Security tab
+      uses: github/codeql-action/upload-sarif@v2
+      if: always()
+      with:
+        sarif_file: 'trivy-results.sarif'
 
     - name: Logout from Docker Hub
       run: docker logout docker.pkg.github.com
