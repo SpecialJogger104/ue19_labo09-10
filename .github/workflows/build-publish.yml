@@ -1,4 +1,4 @@
-name: Build and Publish Docker Image
+name: Build, Scan, and Publish Docker Image
 
 on:
   push:
@@ -6,7 +6,7 @@ on:
       - main
 
 jobs:
-  build-and-publish:
+  build-scan-and-publish:
     runs-on: ubuntu-latest
 
     steps:
@@ -25,24 +25,19 @@ jobs:
         username: ${{ secrets.DOCKER_USERNAME }}
         password: ${{ secrets.DOCKER_PASSWORD }}
 
-    - name: Build and Push Docker Image
+    - name: Build Docker Image
       run: |
         docker buildx create --use
         docker buildx inspect default --bootstrap
-        docker buildx build --platform linux/amd64,linux/arm64 -t docker.io/specialjogger104/docker-image:latest .
+        docker buildx build --platform linux/amd64,linux/arm64 -t docker.pkg.github.com/specialjogger104/docker-image:latest .
 
-    - name: Run Trivy vulnerability scanner
-      uses: aquasecurity/trivy-action@master
+    - name: Scan Docker Image for Vulnerabilities
+      uses: aquasecurity/trivy-action@v0.6.0
       with:
-        image-ref: 'docker.pkg.github.com/specialjogger104/docker-image:latest'
-        format: 'sarif'
-        output: 'trivy-results.sarif'
+        image-ref: docker.pkg.github.com/specialjogger104/docker-image:latest
 
-    - name: Upload Trivy scan results to GitHub Security tab
-      uses: github/codeql-action/upload-sarif@v2
-      if: always()
-      with:
-        sarif_file: 'trivy-results.sarif'
+    - name: Push Docker Image
+      run: docker buildx build --platform linux/amd64,linux/arm64 -t docker.pkg.github.com/specialjogger104/docker-image:latest --push .
 
     - name: Logout from Docker Hub
-      run: docker logout docker.io
+      run: docker logout docker.pkg.github.com
