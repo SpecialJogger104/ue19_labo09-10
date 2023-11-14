@@ -31,10 +31,12 @@ jobs:
         docker buildx inspect default --bootstrap
         docker buildx build --platform linux/amd64,linux/arm64 -t docker.pkg.github.com/specialjogger104/docker-image:latest .
 
-    - name: Scan Docker Image for Vulnerabilities
-      uses: aquasecurity/trivy-action@v0.6.0
-      with:
-        image-ref: docker.pkg.github.com/specialjogger104/docker-image:latest
+    - name: Push Docker Image
+      run: docker buildx build --platform linux/amd64,linux/arm64 -t docker.pkg.github.com/specialjogger104/docker-image:latest --push .
+
+    - name: Logout from Docker Hub
+      run: docker logout docker.pkg.github.com
+
 
     - name: Push Docker Image
       run: docker buildx build --platform linux/amd64,linux/arm64 -t docker.pkg.github.com/specialjogger104/docker-image:latest --push .
