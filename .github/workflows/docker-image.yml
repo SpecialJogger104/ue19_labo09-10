@@ -29,7 +29,6 @@ jobs:
       with:
         image-ref: 'specialjogger104/image-docker:v1'
         format: 'table'
-        output: 'trivy-results.sarif'
 
     - name: Push the Docker image
       run: docker push specialjogger104/image-docker:v1
