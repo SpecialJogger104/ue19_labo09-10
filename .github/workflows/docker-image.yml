@@ -23,8 +23,7 @@ jobs:
 
     - name: Build the Docker image
       run: 
-        docker build . --file Dockerfile --tag image-docker:latest
-        docker tag image-docker:latest specialjogger104/image-docker:v1
+        docker build . --file Dockerfile --tag specialjogger104/image-docker:v1
 
     - name: Push the Docker image
       run: docker push specialjogger104/image-docker:v1
