@@ -22,4 +22,4 @@ jobs:
       run: docker build . --file Dockerfile --tag image-docker:latest
 
     - name: Push the Docker image
-      run: docker image push image-docker:latest
+      run: docker image push docker.io/library/image-docker:latest
