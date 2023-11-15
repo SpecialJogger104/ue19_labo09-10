@@ -22,7 +22,8 @@ jobs:
         password: ${{ secrets.DOCKER_PASSWORD }}
 
     - name: Build the Docker image
-      run: docker build . --file Dockerfile --tag image-docker:v1
+      run: docker build . --file Dockerfile --tag image-docker:latest
+           docker tag image-docker:latest specialjogger104/image-docker:v1
 
     - name: Push the Docker image
-      run: docker push docker.io/library/image-docker:v1
+      run: docker push specialjogger104/image-docker:v1
