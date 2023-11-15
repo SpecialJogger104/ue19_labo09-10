@@ -18,17 +18,3 @@ The script utilizes the requests library to make a request to the OpenSky Networ
     python app.py
     ```
 The script will display the number of flights in the specified area.
-
-## Docker
-If you prefer to run the script in a Docker container, follow these steps:
-1. Build the Docker image using the following command:
-    ```bash
-    docker build -t opensky-flight-counter .
-    ```
-2. Run the container using the following command:
-    ```bash
-    docker run -e USERNAME='your_username' -e PASSWORD='your_password' opensky-flight-counter
-    ```
-Make sure to replace 'your_username' and 'your_password' with your OpenSky Network credentials.
-
-Remember to keep your credentials secure and never share them publicly.
