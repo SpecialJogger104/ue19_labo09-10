@@ -15,4 +15,7 @@ jobs:
     steps:
     - uses: actions/checkout@v3
     - name: Build the Docker image
-      run: docker build . --file Dockerfile --tag image-docker:$(date +%s)
+      run: docker build . --file Dockerfile --tag image-docker:latest
+
+    - name: Push the Docker image
+      run: docker image push image-docker:latest
