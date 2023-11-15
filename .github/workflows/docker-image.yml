@@ -27,3 +27,6 @@ jobs:
 
     - name: Push the Docker image
       run: docker push specialjogger104/image-docker:v1
+
+    - name: Logout from Docker Hub
+      run: docker logout docker.pkg.github.com
